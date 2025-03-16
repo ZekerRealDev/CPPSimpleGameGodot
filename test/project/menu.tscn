@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1jfxnqkogqkg"]
+
+[ext_resource type="Texture2D" uid="uid://b3d4jeni8itjx" path="res://menu_fundo.png" id="1_5b83p"]
+[ext_resource type="Texture2D" uid="uid://v78vo23s1dwl" path="res://menu_b1.png" id="2_be1rk"]
+
+[node name="Menu" type="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5b83p")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.385417
+anchor_right = 0.5
+anchor_bottom = 0.385417
+offset_left = -64.0
+offset_top = -20.0
+offset_right = 64.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_be1rk")
+metadata/_edit_use_anchors_ = true

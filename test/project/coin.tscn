@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6jcqm2y2kwbs"]
+
+[ext_resource type="Texture2D" uid="uid://d36l7n2lw5wcp" path="res://Coin.png" id="1_khara"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfcnu"]
+size = Vector2(16, 16)
+
+[node name="Coin" type="Coin"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lfcnu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_khara")

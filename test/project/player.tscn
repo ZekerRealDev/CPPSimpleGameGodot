@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=3 uid="uid://d2dcu13efms58"]
+
+[ext_resource type="Texture2D" uid="uid://bhbsxyg4us785" path="res://personagem.png" id="1_q4oxb"]
+[ext_resource type="Texture2D" uid="uid://cbk83qu4ftg3s" path="res://personagem_g.png" id="1_qhjl7"]
+[ext_resource type="Texture2D" uid="uid://d0lmfjeouyglw" path="res://personagem_j.png" id="3_yxqde"]
+[ext_resource type="Texture2D" uid="uid://48ux8qc6vgdx" path="res://personagem_w.png" id="4_pjtg8"]
+[ext_resource type="Texture2D" uid="uid://b446hnf3oi1m7" path="res://walk_p.png" id="5_rdhw8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsle4"]
+size = Vector2(25, 27)
+
+[sub_resource type="Curve" id="Curve_imhxp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.770833, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ehwg2"]
+curve = SubResource("Curve_imhxp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6bqig"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.17
+gravity = Vector3(0, -5, 0)
+scale_min = 0.6
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_ehwg2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldwre"]
+atlas = ExtResource("1_qhjl7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jowr5"]
+atlas = ExtResource("1_q4oxb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ic1"]
+atlas = ExtResource("3_yxqde")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8okqt"]
+atlas = ExtResource("4_pjtg8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sf54b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldwre")
+}],
+"loop": true,
+"name": &"glide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jowr5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0ic1")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8okqt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_fsle4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_bottom = 288
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-4, 9)
+emitting = false
+texture = ExtResource("5_rdhw8")
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_6bqig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sf54b")
+animation = &"jump"
+autoplay = "idle"
